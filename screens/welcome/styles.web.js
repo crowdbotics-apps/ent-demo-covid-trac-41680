@@ -1,5 +1,4 @@
-import { StyleSheet } from "react-native"
-
+import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: "#F8F8FC",
@@ -35,4 +34,4 @@ export const styles = StyleSheet.create({
     color: "#828AB0",
     fontWeight: 700
   }
-})
+});

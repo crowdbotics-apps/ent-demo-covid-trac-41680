@@ -1,22 +1,56 @@
-import React from "react"
-import { View, Image, Text, ScrollView, SafeAreaView } from "react-native"
-import { styles } from "./styles"
+import React, { useState, useEffect } from "react";
+import { Text, SafeAreaView, FlatList, StyleSheet, TouchableOpacity } from "react-native";
 
-const WelcomeScreen = () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        <View style={styles.group} />
-        <View style={styles.group}>
-          <Image style={styles.logo} source={require("./logo.png")} />
-          <Text style={styles.text}>
-            Let's build something amazing together!
-          </Text>
-        </View>
-        <Text style={styles.footer}>Made with ❤️ by Crowdbotics</Text>
-      </ScrollView>
-    </SafeAreaView>
-  )
-}
+const Dashboard = () => {
+  const [hospitalData, setHospitalData] = useState([]);
+  useEffect(() => {
+    fetchHospitalData();
+  }, []);
 
-export default WelcomeScreen
+  const fetchHospitalData = async () => {
+    try {
+      const response = await fetch("https://api.covidtracking.com/v1/states/current.json");
+      const data = await response.json();
+      setHospitalData(data);
+    } catch (error) {
+      console.error("Error fetching hospital data:", error);
+    }
+  };
+
+  const renderItem = ({
+    item
+  }) => {
+    return <TouchableOpacity style={styles.item}>
+        <Text style={styles.title}>{item.state}</Text>
+        <Text style={styles.content}>Hospitalized: {item.hospitalized}</Text>
+        <Text style={styles.content}>In ICU: {item.inIcuCurrently}</Text>
+        <Text style={styles.content}>On Ventilator: {item.onVentilatorCurrently}</Text>
+      </TouchableOpacity>;
+  };
+
+  return <SafeAreaView style={styles.container}>
+      <FlatList data={hospitalData} renderItem={renderItem} keyExtractor={item => item.state} />
+    </SafeAreaView>;
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f8f8f8"
+  },
+  item: {
+    backgroundColor: "#ffffff",
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    borderRadius: 10
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold"
+  },
+  content: {
+    fontSize: 18
+  }
+});
+export default Dashboard;
