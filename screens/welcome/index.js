@@ -20,7 +20,9 @@ const Dashboard = () => {
   const renderItem = ({
     item
   }) => {
-    return <TouchableOpacity style={styles.item}>
+    return <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('DashboardScreen', {
+      item
+    })}>
         <Text style={styles.title}>{item.state}</Text>
         <Text style={styles.content}>Hospitalized: {item.hospitalized}</Text>
         <Text style={styles.content}>In ICU: {item.inIcuCurrently}</Text>
