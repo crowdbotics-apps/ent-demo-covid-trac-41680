@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Text, SafeAreaView, FlatList, StyleSheet, TouchableOpacity } from "react-native";
 
-const Dashboard = () => {
+const Dashboard = ({
+  navigation
+}) => {
   const [hospitalData, setHospitalData] = useState([]);
   useEffect(() => {
     fetchHospitalData();
