@@ -22,7 +22,9 @@ const Dashboard = ({
   const renderItem = ({
     item
   }) => {
-    return <Pressable style={styles.item}>
+    return <Pressable style={styles.item} onPress={() => navigation.navigate('ScreenAI2', {
+      item
+    })}>
         <Text style={styles.title}>{item.state}</Text>
         <Text style={styles.content}>Hospitalized: {item.hospitalized}</Text>
         <Text style={styles.content}>In ICU: {item.inIcuCurrently}</Text>
