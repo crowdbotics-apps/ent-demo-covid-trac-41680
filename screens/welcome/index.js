@@ -20,7 +20,7 @@ const Dashboard = () => {
   const renderItem = ({
     item
   }) => {
-    return <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('DashboardScreen', {
+    return <TouchableOpacity style={styles.item} onPress={() => navigation.navigate("DashboardScreen", {
       item
     })}>
         <Text style={styles.title}>{item.state}</Text>
