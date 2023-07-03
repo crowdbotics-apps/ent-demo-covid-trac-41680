@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
-const DashboardScreen = () => {
+const DashboardScreen = ({
+  params
+}) => {
   const [data, setData] = useState(null);
   useEffect(() => {
     fetch("https://api.covidtracking.com/v1/states/current.json").then(response => response.json()).then(responseData => {
