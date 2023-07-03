@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, SafeAreaView, FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, SafeAreaView, FlatList, StyleSheet, Pressable } from "react-native";
 
 const Dashboard = ({
   navigation
@@ -22,14 +22,14 @@ const Dashboard = ({
   const renderItem = ({
     item
   }) => {
-    return <TouchableOpacity style={styles.item}>
+    return <Pressable style={styles.item}>
         <Text style={styles.title}>{item.state}</Text>
         <Text style={styles.content}>Hospitalized: {item.hospitalized}</Text>
         <Text style={styles.content}>In ICU: {item.inIcuCurrently}</Text>
         <Text style={styles.content}>
           On Ventilator: {item.onVentilatorCurrently}
         </Text>
-      </TouchableOpacity>;
+      </Pressable>;
   };
 
   return <SafeAreaView style={styles.container}>
