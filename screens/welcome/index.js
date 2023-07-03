@@ -24,7 +24,9 @@ const Dashboard = () => {
         <Text style={styles.title}>{item.state}</Text>
         <Text style={styles.content}>Hospitalized: {item.hospitalized}</Text>
         <Text style={styles.content}>In ICU: {item.inIcuCurrently}</Text>
-        <Text style={styles.content}>On Ventilator: {item.onVentilatorCurrently}</Text>
+        <Text style={styles.content}>
+          On Ventilator: {item.onVentilatorCurrently}
+        </Text>
       </TouchableOpacity>;
   };
 
